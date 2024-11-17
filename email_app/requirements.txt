@@ -1,0 +1,11 @@
+Django>=3.2,<5.0
+django-background-tasks
+sendgrid
+django-environ
+pytz
+google-auth
+google-auth-oauthlib
+google-auth-httplib2
+google-api-python-client
+openpyxl
+pandas

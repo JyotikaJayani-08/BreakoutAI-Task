@@ -1,0 +1,28 @@
+<!-- dashboard/templates/dashboard/fetch_success.html -->
+<!--<p>Google Sheets data successfully fetched and stored!</p>-->
+<!--<a href="{% url 'dashboard' %}">Go to Dashboard</a>-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fetched Data</title>
+</head>
+<body>
+    <h1>Fetched Data from Google Sheets</h1>
+    <table border="1">
+        <tr>
+            <th>Company Name</th>
+            <th>Location</th>
+            <th>Email</th>
+            <th>Product</th>
+        </tr>
+        {% for row in data %}
+        <tr>
+            <td>{{ row.0 }}</td>
+            <td>{{ row.1 }}</td>
+            <td>{{ row.2 }}</td>
+            <td>{{ row.3 }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

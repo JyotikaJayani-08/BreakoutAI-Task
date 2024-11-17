@@ -1,0 +1,31 @@
+<!-- dashboard/templates/dashboard/send_custom_emails.html -->
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Send Custom Emails</h2>
+    <form method="POST" action="{% url 'send_custom_emails' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="email_template">Email Template</label>
+            <textarea class="form-control" id="email_template" name="email_template" rows="5" placeholder="Write your email template here... e.g., Hello {{ company_name }}, we have great offers in {{ location }}!"></textarea>
+            <small class="form-text text-muted">Use placeholders: {{ company_name }}, {{ location }}, {{ email }}, {{ product }}</small>
+        </div>
+        <div class="form-group mt-3">
+            <h5>Insert Placeholders:</h5>
+            {% for column in columns %}
+                <button type="button" class="btn btn-secondary btn-sm me-2" onclick="insertPlaceholder('{{ column }}')">{{ column }}</button>
+            {% endfor %}
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Send Emails</button>
+    </form>
+</div>
+
+<script>
+    function insertPlaceholder(placeholder) {
+        const textarea = document.getElementById("email_template");
+        // Use templatetag to safely insert Django template variables
+        textarea.value += `{% templatetag openvariable %}${placeholder}{% templatetag closevariable %}`;
+    }
+</script>
+{% endblock %}

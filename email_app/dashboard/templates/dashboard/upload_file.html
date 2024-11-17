@@ -1,0 +1,29 @@
+<!-- dashboard/templates/dashboard/upload_file.html -->
+<h1>Upload CSV or Excel File</h1>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="file">Choose a file to upload:</label>
+    <input type="file" id="file" name="file" accept=".csv, .xls, .xlsx" required>
+    <button type="submit">Upload</button>
+</form>
+
+{% if columns %}
+    <h2>Detected Columns:</h2>
+    <div id="placeholders">
+        {% for column in columns %}
+            <button type="button" onclick="insertPlaceholder('{{ column }}')">{{ column }}</button>
+        {% endfor %}
+    </div>
+
+    <label for="prompt">Message Template:</label>
+    <textarea id="prompt" name="prompt" placeholder="Enter your message here..."></textarea>
+{% endif %}
+
+<script>
+    function insertPlaceholder(placeholder) {
+        const textarea = document.getElementById("prompt");
+        // Use templatetag to represent Django's template brackets safely
+        textarea.value += `{% templatetag openvariable %}${placeholder}{% templatetag closevariable %}`;
+    }
+</script>

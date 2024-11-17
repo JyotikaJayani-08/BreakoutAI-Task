@@ -1,0 +1,63 @@
+<!-- dashboard/templates/dashboard/index.html -->
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+<div class="mt-5 text-center">
+    <h1>Welcome to the Premium Email Dashboard</h1>
+    <p class="lead">Choose a task below:</p>
+
+    <!-- Display messages -->
+    {% if messages %}
+        <div class="alert alert-info" role="alert">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Upload CSV</h5>
+                    <p class="card-text">Upload a CSV file to add email data.</p>
+                    <a href="{% url 'upload_file' %}" class="btn btn-primary">Upload</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Schedule Emails</h5>
+                    <p class="card-text">Schedule and send emails automatically.</p>
+                    <form method="POST" action="{% url 'schedule_email_view' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary">Schedule</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Authorize Google Sheets</h5>
+                    <p class="card-text">Authorize Google Sheets access.</p>
+                    <a href="{% url 'authorize_google_sheets' %}" class="btn btn-primary">Authorize</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mt-3">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="card-title">Test Email</h5>
+                    <p class="card-text">Send a test email to verify email functionality.</p>
+                    <a href="{% url 'test_email' %}" class="btn btn-primary">Send Test Email</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

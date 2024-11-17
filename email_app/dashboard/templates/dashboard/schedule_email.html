@@ -1,0 +1,62 @@
+<!-- dashboard/templates/dashboard/schedule_email.html -->
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+<div class="mt-5">
+    <h1>Schedule Email</h1>
+    <form method="POST" action="{% url 'schedule_email_view' %}">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="subject" class="form-label">Subject:</label>
+            <input type="text" id="subject" name="subject" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="message" class="form-label">Message:</label>
+            <textarea id="message" name="message" class="form-control" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="recipient_list" class="form-label">Recipients (comma-separated):</label>
+            <input type="text" id="recipient_list" name="recipient_list" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="batch_size" class="form-label">Batch Size:</label>
+            <input type="number" id="batch_size" name="batch_size" class="form-control" value="10" required>
+        </div>
+        <div class="mb-3">
+            <label for="schedule_time" class="form-label">Schedule Time:</label>
+            <input type="datetime-local" id="schedule_time" name="schedule_time" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary mb-3">Schedule Email</button>
+        <div class="d-flex justify-content-between">
+            <a href="{% url 'home' %}" class="btn btn-secondary">Back to Home</a>
+            <a href="{% url 'sent_scheduled_emails' %}" class="btn btn-secondary">View Sent Scheduled Emails</a>
+        </div>
+    </form>
+
+    <h2 class="mt-5">Scheduled Emails</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Subject</th>
+                <th>Message</th>
+                <th>Recipients</th>
+                <th>Batch Size</th>
+                <th>Schedule Time</th>
+                <th>Created At</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for email in scheduled_emails %}
+            <tr>
+                <td>{{ email.subject }}</td>
+                <td>{{ email.message }}</td>
+                <td>{{ email.recipient_list }}</td>
+                <td>{{ email.batch_size }}</td>
+                <td>{{ email.schedule_time|date:"M d, Y, H:i a" }}</td>
+                <td>{{ email.created_at|date:"M d, Y, H:i a" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

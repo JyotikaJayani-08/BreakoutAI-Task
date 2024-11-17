@@ -1,0 +1,33 @@
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+<div class="mt-5">
+    <h1>Sent Scheduled Emails</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Subject</th>
+                <th>Message</th>
+                <th>Recipient List</th>
+                <th>Scheduled Time</th>
+                <th>Sent Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for email in sent_emails %}
+            <tr>
+                <td>{{ email.subject }}</td>
+                <td>{{ email.message }}</td>
+                <td>{{ email.recipient_list }}</td>
+                <td>{{ email.schedule_time|date:"M d, Y, H:i a" }}</td>
+                <td>{{ email.sent_time|date:"M d, Y, H:i a" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="d-flex justify-content-between mt-3">
+        <a href="{% url 'schedule_email_view' %}" class="btn btn-secondary">Schedule Another Email</a>
+        <a href="{% url 'home' %}" class="btn btn-secondary">Back to Home</a>
+    </div>
+</div>
+{% endblock %}

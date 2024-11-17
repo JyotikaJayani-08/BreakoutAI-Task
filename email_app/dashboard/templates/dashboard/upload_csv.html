@@ -1,0 +1,7 @@
+<!-- dashboard/templates/dashboard/upload_csv.html -->
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="file">Upload CSV:</label>
+    <input type="file" id="file" name="file" accept=".csv">
+    <button type="submit">Upload</button>
+</form>
