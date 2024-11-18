@@ -70,6 +70,10 @@ python manage.py migrate
 ### 6. Start the Development Server:
 python manage.py runserver
 
+### 7. For parallel process so that email sending can happen:
+python manage.py process_task
+
+
 ## Usage
 
 1. Access the Dashboard: Open the browser and navigate to http://127.0.0.1:8000/.
@@ -105,6 +109,33 @@ python manage.py runserver
 - Email Service: SendGrid/Gmail API
 - Database: SQLite (Development) / PostgreSQL (Production)
 - External APIs: Google Sheets API, Gemini API
+
+## Video Demonstration 
+
+https://github.com/user-attachments/assets/502897ee-47b8-434f-b5d6-63c8b0a56733
+
+
+
+
+
+
+## Website UI
+![Screenshot from 2024-11-18 00-33-23](https://github.com/user-attachments/assets/c367272c-d036-4d54-b354-c535bbc292b7)
+
+![Screenshot from 2024-11-18 00-33-32](https://github.com/user-attachments/assets/210dea16-876e-485b-b962-191ff23fb09b)
+
+
+
+
+
+## Snippets From The Code
+
+![Screenshot from 2024-11-18 00-33-49](https://github.com/user-attachments/assets/543754d1-9df0-4a37-81ea-61e59d4cc656)
+
+
+
+![Screenshot from 2024-11-18 00-33-53](https://github.com/user-attachments/assets/ad9441c4-6b8c-4795-b56b-0790f47128f8)
+
 
 ## Future Enhancements
 
